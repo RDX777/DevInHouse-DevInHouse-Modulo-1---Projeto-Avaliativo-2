@@ -1,0 +1,1 @@
+export { ContainerGeral } from "./ContainerGeral"

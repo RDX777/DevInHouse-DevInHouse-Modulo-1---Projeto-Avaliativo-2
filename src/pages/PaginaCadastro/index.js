@@ -1,0 +1,1 @@
+export { PaginaCadastro } from "./PaginaCadastro.jsx"
