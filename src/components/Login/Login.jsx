@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { Link } from 'react-router-dom';
 
 import { Label, Button, InputStyled } from "../"
 import { CorErro, BoxStyled } from "./Login.styled"
@@ -20,8 +21,8 @@ export const Login = () => {
 
   return (
 
-    <BoxStyled>
-      <form onSubmit={handleSubmit(values)}>
+    <form onSubmit={handleSubmit(values)}>
+      <BoxStyled>
         <p>Bem vindo ao sistema!</p>
 
         <Label htmlFor="login">Login</Label>
@@ -34,10 +35,11 @@ export const Login = () => {
 
         <div>
           <Button type="submit" id="logar">Acessar</Button>
-          <Button type="button">Cadastrar</Button>
+
         </div>
-      </form>
-    </BoxStyled >
+        <Link to="/cadastro">Cadastrar</Link>
+      </BoxStyled>
+    </form>
 
   )
 }

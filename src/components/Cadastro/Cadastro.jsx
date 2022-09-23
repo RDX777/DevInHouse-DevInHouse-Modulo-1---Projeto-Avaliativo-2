@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { BoxStyled, Coluna, Linha, Centro, CorErro } from "./Cadastro.styled.jsx"
 import { InputStyled } from "../Input/InputStyled.styled.jsx"
 import { Button } from "../Button"
-import { consultaCep } from "../../services/consultaCep.js"
+import { useViaCep } from "../../contexts"
 
 const validacao = yup.object().shape({
   nome: yup.string().required("O nome é obrigatório!"),
@@ -30,40 +30,28 @@ const values = (data) => { console.log(data) }
 
 export const Cadastro = () => {
 
-  const [cep, setCep] = useState([])
+  const { handleCampoCep, dadosCep } = useViaCep();
 
-  // useEffect(() => {
+  const [cep, setCep] = useState({
+    logradouro: "",
+    bairro: "",
+    localidade: "",
+    uf: "",
+  })
 
+  useEffect(() => {
+    setCep(dadosCep)
 
-  //   console.log(cep)
-  //   .then((response) => {
-  //     console.log(response.json())
-  //   })
-  //   toast.promise(consultaCep, {
-  //     pending: "Consultando CEP.",
-  //     success: "CEP encontrado",
-  //     error: "CEP não encontrado"
-  //   })
-  // })
+  }, [dadosCep])
 
   const consultaCepCliente = (event) => {
 
-    if (event.keyCode === 13) {
+    if (event.keyCode === 9) {
 
-      if(event.target.value.length !== 8) {
+      if (event.target.value.length !== 8) {
         toast.error("CEP Invalido")
       } else {
-
-        consultaCep(event.target.value).then(({ data }) => {
-          setCep(data)
-          console.log("cep", data)
-
-        })
-        toast.promise(consultaCep, {
-          pending: "Consultando CEP.",
-          success: "CEP encontrado",
-          error: "Erro ao consultar",
-        })
+        handleCampoCep(event.target.value)
       }
     }
   }
@@ -138,19 +126,19 @@ export const Cadastro = () => {
 
           <Linha>
             <label htmlFor="bairro">Bairro</label>
-            <InputStyled type="text" name="bairro" id="bairro" autoComplete="off" {...register("bairro")} />
+            <InputStyled type="text" name="bairro" id="bairro" value={cep?.bairro} autoComplete="off" {...register("bairro")} />
             <CorErro>{errors.bairro?.message}</CorErro>
           </Linha>
 
           <Linha>
             <label htmlFor="cidade">Cidade</label>
-            <InputStyled type="text" name="cidade" id="cidade" autoComplete="off" {...register("cidade")} />
+            <InputStyled type="text" name="cidade" id="cidade" value={cep?.localidade} autoComplete="off" {...register("cidade")} />
             <CorErro>{errors.cidade?.message}</CorErro>
           </Linha>
 
           <Linha>
             <label htmlFor="estado">Estado</label>
-            <InputStyled type="text" name="estado" id="estado" autoComplete="off" {...register("estado")} />
+            <InputStyled type="text" name="estado" id="estado" value={cep?.uf} autoComplete="off" {...register("estado")} />
             <CorErro>{errors.estado?.message}</CorErro>
           </Linha>
 

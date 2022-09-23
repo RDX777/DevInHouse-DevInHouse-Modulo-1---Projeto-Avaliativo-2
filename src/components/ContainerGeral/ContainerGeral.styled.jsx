@@ -5,7 +5,7 @@ background-color: ${({ theme }) => theme.colors.backgroundPrimary};
 width: 100vw;
 height: 90vh;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 `

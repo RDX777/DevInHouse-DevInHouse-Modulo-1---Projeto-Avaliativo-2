@@ -1,0 +1,1 @@
+export { PrevisaoTempo } from "./PrevisaoTempo.jsx" 
