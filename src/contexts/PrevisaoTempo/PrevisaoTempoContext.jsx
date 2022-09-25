@@ -1,3 +1,3 @@
 import { createContext } from "react"
 
-export const PrevisaoTempoContex = createContext()
+export const PrevisaoTempoContext = createContext()

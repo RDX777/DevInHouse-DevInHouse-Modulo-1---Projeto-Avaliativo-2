@@ -5,25 +5,22 @@ import { PrevisaoTempoContext } from "./PrevisaoTempoContext.jsx"
 import { consultaPrevisaoTempo } from "../../services/ConsultaPrevisaoTempo.js"
 
 export const PrevisaoTempoProvider = ({ children }) => {
+  const [cidade, setCidade] = useState("")
   const [dadosPrevisao, setDadosPrevisao] = useState({})
 
-  // useEffect(() => {
-  //   if(campoCep) {
-  //   toast.promise(consultaCep(campoCep)
-  //     .then(response => response.json())
-  //     .then(data => setDadosCep(data))
-  //     , {
-  //       pending: "Consultando CEP.",
-  //       success: "CEP encontrado",
-  //       error: "CEP não encontrado"
-  //     })
-  //   }
+useEffect(() => {
+  if(cidade !== "") {
 
-  // }, [campoCep])
+    consultaPrevisaoTempo(cidade).then(response => response.json()).then(data => setDadosPrevisao(data))
+}
+}, [cidade])
 
+const consultaTempo = (cidadeUsuario) => {
+  setCidade(cidadeUsuario)
+  }
 
   return (
-    <PrevisaoTempoContext.Provider>
+    <PrevisaoTempoContext.Provider value={{dadosPrevisao, consultaTempo}}>
       {children}
     </PrevisaoTempoContext.Provider>
   )

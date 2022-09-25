@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { Link } from 'react-router-dom';
 
-import { Label, Button, InputStyled } from "../"
+import { Label, Button, InputStyled, Link } from "../"
 import { CorErro, BoxStyled } from "./Login.styled"
 
 const validacao = yup.object().shape({
@@ -35,7 +34,6 @@ export const Login = () => {
 
         <div>
           <Button type="submit" id="logar">Acessar</Button>
-
         </div>
         <Link to="/cadastro">Cadastrar</Link>
       </BoxStyled>

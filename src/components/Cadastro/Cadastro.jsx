@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 
 import { BoxStyled, Coluna, Linha, Centro, CorErro } from "./Cadastro.styled.jsx"
 import { InputStyled } from "../Input/InputStyled.styled.jsx"
-import { Button } from "../Button"
-import { useViaCep } from "../../contexts"
+import { Button, Link } from "../"
+import { useViaCep, usePerfilUsuario } from "../../contexts"
 
 const validacao = yup.object().shape({
   nome: yup.string().required("O nome é obrigatório!"),
@@ -25,13 +25,17 @@ const validacao = yup.object().shape({
   complemento: yup.string(),
 })
 
-const values = (data) => { console.log(data) }
-
 
 export const Cadastro = () => {
 
-  const { handleCampoCep, dadosCep } = useViaCep();
+  const { handleCampoCep, dadosCep } = useViaCep()
 
+  const { usuarioSalva } = usePerfilUsuario()
+
+  const values = (data) => { 
+    usuarioSalva(JSON.stringify(data))
+  }
+  
   const [cep, setCep] = useState({
     logradouro: "",
     bairro: "",
@@ -152,7 +156,7 @@ export const Cadastro = () => {
 
         <Centro>
           <Button type="submit" id="logar">Cadastrar</Button>
-          <Button type="button">Login</Button>
+          <Link to="/login">Login</Link>
         </Centro>
 
       </form>

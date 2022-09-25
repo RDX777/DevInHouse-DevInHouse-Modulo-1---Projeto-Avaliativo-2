@@ -16,25 +16,30 @@ export const ViaCepProvider = ({ children }) => {
   const [campoCep, setCampoCep] = useState()
 
   useEffect(() => {
-    if(campoCep) {
-    toast.promise(consultaCep(campoCep)
-      .then(response => response.json())
-      .then(data => setDadosCep(data))
-      , {
-        pending: "Consultando CEP.",
-        success: "CEP encontrado",
-        error: "CEP não encontrado"
-      })
+    if (campoCep) {
+      toast.promise(consultaCep(campoCep)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.erro) {
+            toast.error("O CEP não foi encontrado")
+          } else {
+            setDadosCep(data)
+            toast.success("CEP localizado com sucesso")
+          }
+        })
+        , {
+          pending: "Consultando CEP.",
+        })
     }
 
   }, [campoCep])
 
-const handleCampoCep = (campoCep) => {
-  setCampoCep(campoCep)
-}
+  const handleCampoCep = (campoCep) => {
+    setCampoCep(campoCep)
+  }
 
   return (
-    <ViaCepContext.Provider value={{dadosCep, handleCampoCep}}>
+    <ViaCepContext.Provider value={{ dadosCep, handleCampoCep }}>
       {children}
     </ViaCepContext.Provider>
   )

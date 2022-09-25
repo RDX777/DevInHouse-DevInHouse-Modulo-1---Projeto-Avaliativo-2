@@ -20,4 +20,4 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
   value: PropTypes.string,
-};
+}

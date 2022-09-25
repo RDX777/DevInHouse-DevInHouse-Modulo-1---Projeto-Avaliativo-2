@@ -1,15 +1,9 @@
-
-import { useTema } from "../../contexts";
-import { Container, ContentTitle, Title } from "./Navbar.styled";
-import { Button } from "../Button";
-import { Toggle } from "../Toggle";
+import { useTema } from "../../contexts"
+import { Container, ContentTitle, Title } from "./Navbar.styled"
+import { Button, Link } from "../"
 
 export const Navbar = () => {
-  const { alteraTema } = useTema();
-
-  const teste = (event) => {
-    console.log(event)
-  }
+  const { alteraTema } = useTema()
 
   return (
     <Container>
@@ -17,18 +11,12 @@ export const Navbar = () => {
         <Title>Connect Lab</Title>
       </ContentTitle>
       <div>
-        <a href="#tip">Inicio</a>
-        <a href="#tip">Dispositivos</a>
-        <a href="#tip">perfil</a>
-        <div>
-          <Toggle onClick={teste}/>
-        </div>
-        <div>
-          <Button onClick={() => alteraTema("escuro")}>Tema 1</Button>
-          <Button onClick={() => alteraTema("claro")}>Tema 2</Button>
-          <Button onClick={"te"} >Login</Button>
-        </div>
-
+        <Link to="/inicial">Inicio</Link>
+        <Link to="/dispositivos">Dispositivos</Link>
+        <Link to="/perfil">Perfil</Link>
+        <Button onClick={() => alteraTema("escuro")}>Tema 1</Button>
+        <Button onClick={() => alteraTema("claro")}>Tema 2</Button>
+        <Button onClick={() => { }} >Login</Button>
       </div>
 
     </Container>

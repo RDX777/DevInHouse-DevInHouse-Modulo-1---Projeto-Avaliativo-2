@@ -1,0 +1,1 @@
+export { CardInicio } from "./CardInicio.jsx"

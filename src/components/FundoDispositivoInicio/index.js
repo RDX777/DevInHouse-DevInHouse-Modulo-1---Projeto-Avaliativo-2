@@ -1,0 +1,1 @@
+export { FundoDispositivoInicio } from "./FundoDispositivoInicio.jsx"

@@ -5,7 +5,7 @@ import { temaClaro, temaEscuro } from "../../themes"
 import { coletaTema, salvaTema } from "../../utils/localStorageTema.js"
 
 export const TemaProvider = ({ children }) => {
-  const [tema, setTema] = useState(temaClaro);
+  const [tema, setTema] = useState(temaClaro)
 
   useEffect(() => {
     alteraTema(coletaTema())
