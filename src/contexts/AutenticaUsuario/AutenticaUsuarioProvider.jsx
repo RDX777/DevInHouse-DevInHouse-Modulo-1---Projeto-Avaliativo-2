@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 
 export const AutenticaUsuarioProvider = ({ children }) => {
 
-  const [ estaLogado, setEstaLogado ] = useState(true)
+  const [ estaLogado, setEstaLogado ] = useState(false)
 
   const navigate = useNavigate();
 
