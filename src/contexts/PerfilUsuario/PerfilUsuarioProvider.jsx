@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { useState } from "react"
 
 import { PerfilUsuarioContext } from "./PerfilUsuarioContext.jsx"
-import { salvaUsuario, coletaUsuario, coletaCidade } from "../../services/PerfilUsuario.js"
+import { salvaUsuario, coletaUsuario, coletaCidade, coletaUsuarioToJson } from "../../services/PerfilUsuario.js"
 
 export const PerfilUsuarioProvider = ({ children }) => {
 
@@ -16,12 +16,16 @@ export const PerfilUsuarioProvider = ({ children }) => {
     setUsuarioPerfil(coletaUsuario())
   }
 
-const usuarioColetaCidade = () => {
- return coletaCidade()
-}
+  const usuarioColetaCidade = () => {
+    return coletaCidade()
+  }
+
+  const usuarioColetaEdita = () => {
+    return coletaUsuarioToJson()
+  }
 
   return (
-    <PerfilUsuarioContext.Provider value={{usuarioSalva, usuarioColeta, usuarioPerfil, usuarioColetaCidade}}>
+    <PerfilUsuarioContext.Provider value={{ usuarioSalva, usuarioColeta, usuarioPerfil, usuarioColetaCidade, usuarioColetaEdita }}>
       {children}
     </PerfilUsuarioContext.Provider>
   )

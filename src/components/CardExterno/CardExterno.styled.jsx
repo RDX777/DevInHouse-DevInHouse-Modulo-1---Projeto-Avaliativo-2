@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoxStyled = styled.div`
 width: 350px;
-height: 120px;
+height: 220px;
 background: ${({ theme }) => theme.colors.backgroundPrimary};
 color: ${({ theme }) => theme.colors.secondary};
 border-radius: ${({ theme }) => theme.spacing.sm};
@@ -12,12 +12,13 @@ flex-direction: column;
 align-items: center;
 `
 
-export const DivDeralStyled = styled.div`
+export const DivGeralStyled = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   margin: ${({ theme }) => theme.spacing.xl};
   padding: ${({ theme }) => theme.spacing.sm};
+  align-items: center;
 `
 
 export const DivImagemStyled = styled.div`

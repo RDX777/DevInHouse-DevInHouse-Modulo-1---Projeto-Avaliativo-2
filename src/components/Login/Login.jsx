@@ -3,20 +3,25 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
 import { Label, Button, InputStyled, Link } from "../"
-import { CorErro, BoxStyled } from "./Login.styled"
+import { useAutenticaUsuario } from "../../contexts"
+import { CorErro, BoxStyled } from "./Login.styled.jsx"
+
 
 const validacao = yup.object().shape({
   login: yup.string().email("O login deve ser um e-mail valido").required("O Login é obrigatorio!").max(50, "Campo excedeu o tamanho permitido."),
   senha: yup.string().required("O Senha é obrigatorio!").max(8, "Campo excedeu o tamanho permitido."),
 })
 
-const values = (data) => { console.log(data) }
-
 export const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(validacao)
   })
+
+  const { verificaUsuario } = useAutenticaUsuario()
+
+  const values = (data) => { verificaUsuario(data) }
+
 
   return (
 

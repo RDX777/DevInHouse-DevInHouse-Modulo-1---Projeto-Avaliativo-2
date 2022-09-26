@@ -10,10 +10,23 @@ export const coletaUsuario = () => {
   
 }
 
-export const logaUsuario = (loginUsuario) => {
+export const coletaUsuarioToJson = () => {
+  
+  const json = coletaUsuario()
+  return JSON.parse(json)
 
-  console.log(loginUsuario)
+  
+}
 
+export const coletaUsuarioAutentica = () => {
+  
+  const json = coletaUsuario()
+  const usuario = JSON.parse(json)
+
+  return {
+    login: usuario.email,
+    senha: usuario.senha,
+  }  
 }
 
 export const coletaCidade = () => {

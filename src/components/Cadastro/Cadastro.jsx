@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { BoxStyled, Coluna, Linha, Centro, CorErro } from "./Cadastro.styled.jsx"
 import { InputStyled } from "../Input/InputStyled.styled.jsx"
 import { Button, Link } from "../"
-import { useViaCep, usePerfilUsuario } from "../../contexts"
+import { useViaCep, usePerfilUsuario, useAutenticaUsuario } from "../../contexts"
 
 const validacao = yup.object().shape({
   nome: yup.string().required("O nome é obrigatório!"),
@@ -29,8 +29,8 @@ const validacao = yup.object().shape({
 export const Cadastro = () => {
 
   const { handleCampoCep, dadosCep } = useViaCep()
-
   const { usuarioSalva } = usePerfilUsuario()
+  const { estaLogado } = useAutenticaUsuario()
 
   const values = (data) => { 
     usuarioSalva(JSON.stringify(data))
@@ -45,7 +45,6 @@ export const Cadastro = () => {
 
   useEffect(() => {
     setCep(dadosCep)
-
   }, [dadosCep])
 
   const consultaCepCliente = (event) => {
@@ -69,7 +68,7 @@ export const Cadastro = () => {
       <form onSubmit={handleSubmit(values)}>
 
         <Centro>
-          <h1>Cadastrar</h1>
+          <h1>{estaLogado ? "Editar" : "Cadastrar"}</h1>
         </Centro>
 
         <Coluna>
@@ -155,7 +154,7 @@ export const Cadastro = () => {
         </Coluna>
 
         <Centro>
-          <Button type="submit" id="logar">Cadastrar</Button>
+          <Button type="submit" id="logar">{estaLogado ? "Editar" : "Cadastrar"}</Button>
           <Link to="/login">Login</Link>
         </Centro>
 

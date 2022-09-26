@@ -1,8 +1,8 @@
 import { ToastContainer } from 'react-toastify'
-import { Router } from './routes';
+import { RouterConfig } from './routes';
 import { BrowserRouter } from 'react-router-dom';
 
-import { TemaProvider, PerfilUsuarioProvider } from "./contexts"
+import { TemaProvider, PerfilUsuarioProvider, AutenticaUsuarioProvider } from "./contexts"
 
 import 'react-toastify/dist/ReactToastify.min.css'
 
@@ -13,7 +13,10 @@ function App() {
       <BrowserRouter>
         <TemaProvider>
           <PerfilUsuarioProvider>
-            <Router />
+            <AutenticaUsuarioProvider>
+              <RouterConfig />
+              {/* <Router /> */}
+            </AutenticaUsuarioProvider>
           </PerfilUsuarioProvider>
         </TemaProvider>
         <ToastContainer />

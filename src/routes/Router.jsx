@@ -1,21 +1,14 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import PropTypes from "prop-types"
+import { Route, Routes } from 'react-router-dom';
 
-import { PaginaCadastro, PaginaInicial, PaginaLogin, PaginaPerfil } from '../pages'
+import { PaginaCadastro, PaginaLogin } from '../pages'
 
-export const Router = ({children}) => {
+export const Router = () => {
   return (
       <Routes>
         <Route path='/cadastro' element={<PaginaCadastro />} />
-        <Route path='/inicial' element={<PaginaInicial />} />
         <Route path='/login' element={<PaginaLogin />} />
-        <Route path='/perfil' element={<PaginaPerfil />} />
-        <Route path='*' element={<h1>404</h1>} />
+        <Route path='*' element={<PaginaLogin />} />
       </Routes>
 
   )
 }
-
-Router.propTypes = {
-  children: PropTypes.node,
-};

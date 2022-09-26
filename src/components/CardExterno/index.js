@@ -1,0 +1,1 @@
+export { CardExterno } from "./CardExterno.jsx"
