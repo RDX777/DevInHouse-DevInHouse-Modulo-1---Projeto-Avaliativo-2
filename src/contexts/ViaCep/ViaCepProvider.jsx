@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { toast } from 'react-toastify';
 
 import { ViaCepContext } from "./ViaCepContext.jsx"
-import { consultaCep } from "../../services/consultaCep.js"
+import { consultaCep } from "../../services/ConsultaCepFetch.js"
 
 export const ViaCepProvider = ({ children }) => {
   const [dadosCep, setDadosCep] = useState({
