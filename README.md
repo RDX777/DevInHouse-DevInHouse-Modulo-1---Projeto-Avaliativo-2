@@ -43,7 +43,7 @@ npm run dev
 
 ### Endereço de teste.
 ```
-https://euphonious-lamington-db1d66.netlify.app
+https://sage-peony-c7907d.netlify.app
 ```
 
 
